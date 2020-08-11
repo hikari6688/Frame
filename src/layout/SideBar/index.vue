@@ -58,6 +58,7 @@ export default {
   white-space: nowrap;
   vertical-align: bottom;
   transition: width 0.2s ease 0.2s;
+  user-select: none;
 }
 .menu-item i {
   transform: translateX(0px);
