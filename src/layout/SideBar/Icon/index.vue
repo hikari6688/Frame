@@ -29,7 +29,7 @@ export default {
  .hide {
     span {
       display: none !important; 
-      transition: linear all 0.5s;
+      transition: ease all 0.5s;
     }
   }
 .side-icon {
@@ -40,7 +40,7 @@ export default {
   align-items: center;
   justify-content: center;
   color: white;
-  transition: linear all 0.5s;
+  transition: ease all 0.5s;
   
   span {
     font-size: 28px;

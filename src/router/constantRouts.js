@@ -10,7 +10,7 @@ export const constantRouts = [
   // },
   {
     path: '/login',
-    name: '登陆',
+    name: 'login',
     component: () => import('@/views/login/index.vue'),
   },
 ];

@@ -20,5 +20,6 @@ export default {
   width: 100%;
   background-color: white;
   overflow: auto;
+  padding: 28px;
 }
 </style>

@@ -4,16 +4,16 @@
       <Icon type="md-menu" class="normal" />
     </div>
     <div class="user">
-      <Dropdown>
+      <Dropdown @on-click="clickDrop">
         <div class="avatar">
           <img src="@/assets/images/kotori.jpg" alt="" />
           <!-- <img :src="avatar" alt="" /> -->
         </div>
         <span class="name">ichiko</span>
         <DropdownMenu slot="list">
-          <DropdownItem>消息中心</DropdownItem>
-          <DropdownItem>退出登陆</DropdownItem>
-          <DropdownItem>重置密码</DropdownItem>
+          <DropdownItem name="message">消息中心</DropdownItem>
+          <DropdownItem name="reset">重置密码</DropdownItem>
+          <DropdownItem name="logout">退出登陆</DropdownItem>
         </DropdownMenu>
       </Dropdown>
     </div>
@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { mapMutations, mapState } from 'vuex';
+import { mapMutations, mapState, mapActions } from 'vuex';
 export default {
   data() {
     return {
@@ -36,6 +36,7 @@ export default {
   },
   methods: {
     ...mapMutations(['SET_TOGGLE', 'SET_KEY', 'SET_OPEN']),
+    ...mapActions(['LOG_OUT']),
     hideMenu() {
       this.SET_TOGGLE(!this.isCollapsed);
       if (this.isCollapsed) {
@@ -49,6 +50,25 @@ export default {
         this.$store.commit('SET_KEY', to.name);
       }
     },
+    clickDrop(name) {
+      switch (name) {
+        case 'message':
+          break;
+
+        case 'reset':
+          break;
+        case 'logout':
+          //退出登陆
+          this.LOG_OUT().then((r) => {
+            localStorage.clear();
+            sessionStorage.clear();
+            this.$router.replace({
+              name: 'login',
+            });
+          });
+          break;
+      }
+    },
   },
 };
 </script>
@@ -60,10 +80,10 @@ export default {
   justify-content: space-between;
   .rotate {
     transform: rotate(-90deg);
-    transition: linear all 0.2s;
+    transition: ease all 0.2s;
   }
   .switch {
-    transition: linear all 0.2s;
+    transition: ease all 0.2s;
     cursor: pointer;
     .normal {
       font-size: 28px;

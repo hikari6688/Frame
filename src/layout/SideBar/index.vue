@@ -53,12 +53,21 @@ export default {
 .menu-item span {
   display: inline-block;
   overflow: hidden;
-  width: 69px;
+  max-width: 120px;
   text-overflow: ellipsis;
   white-space: nowrap;
   vertical-align: bottom;
   transition: width 0.2s ease 0.2s;
   user-select: none;
+
+}
+.ivu-menu-item{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ivu-menu-submenu-title{
+  font-size: 16px;
 }
 .menu-item i {
   transform: translateX(0px);

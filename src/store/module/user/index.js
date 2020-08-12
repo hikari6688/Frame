@@ -12,8 +12,13 @@ const getters = {};
 
 // actions
 const actions = {
-  test({ commit }) {
-    console.log('this is test');
+  LOG_OUT({ commit }) {
+    return new Promise((resove, reject) => {
+      //调用登陆接口
+      setTimeout(() => {
+        resove()
+      }, 1000);
+    });
   },
   GET_ROUTES({ commit }) {
     return new Promise((resolve, reject) => {
@@ -99,7 +104,7 @@ const actions = {
             ],
           },
         ];
-        resolve()
+        resolve();
         commit('SET_ROUTES', res);
       }, 0);
     });
