@@ -59,14 +59,13 @@ export default {
   vertical-align: bottom;
   transition: width 0.2s ease 0.2s;
   user-select: none;
-
 }
-.ivu-menu-item{
+.ivu-menu-item {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.ivu-menu-submenu-title{
+.ivu-menu-submenu-title {
   font-size: 16px;
 }
 .menu-item i {

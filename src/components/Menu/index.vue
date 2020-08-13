@@ -10,7 +10,7 @@
           </MenuItem>
         </router-link>
       </template>
-
+    <!-- 有children的渲染下啦菜单 -->
       <template v-else>
         <Submenu :name="item.name" :key="item.name">
           <template slot="title">

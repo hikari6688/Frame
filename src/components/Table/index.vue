@@ -1,6 +1,6 @@
 <template>
   <div class="table">
-    <Table :border="false" :loading="loading" :columns="columns" :data="sorce">
+    <Table height="520"  :border="false" :loading="loading" :columns="columns" :data="sorce">
       <template v-for="(i, idx) in slots" slot-scope="{ row, index }" :slot="i.slot">
         <div :key="idx">
           <slot :name="i.slot" :data="row"></slot>

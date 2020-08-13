@@ -5,6 +5,11 @@
         <Button type="primary">新增</Button>
         <Button type="primary">导出Excel</Button>
       </template>
+        <template v-slot:extra>
+          <FormItem label='这是插槽哦:'>
+        <Input  type="text" v-model="slot" placeholder="这是插槽" />
+         </FormItem> 
+      </template>
     </iSearch>
     <iTable ref="table" :sorce="data" :columns="columns">
       <template v-slot:action="scope">
@@ -30,6 +35,7 @@ export default {
   data() {
     return {
       data: [], //table数据源
+      slot:'',
       searchOpt: {
         reset: true,
         items: [
@@ -38,7 +44,7 @@ export default {
             label: '姓名',
             tip: '请输入姓名',
             key: 'name',
-            style: { width: '50px' },
+            style: { width: '120px' },
             clearble: true,
           },
           {
@@ -46,6 +52,7 @@ export default {
             label: '国籍',
             tip: '请选择',
             key: 'nation',
+             style: { width: '120px' },
             option: [
               {
                 value: 'New York',
@@ -74,13 +81,13 @@ export default {
             ],
           },
           {
-            type: 'date-single',
+            type: 'date',
             label: '时间',
             tip: '请选择时间',
             key: 'date',
           },
           {
-            type: 'date-range',
+            type: 'range',
             label: '时间',
             tip: '请选择时间',
             key: 'time',
@@ -91,19 +98,21 @@ export default {
         {
           title: 'Name',
           key: 'name',
+          align: 'center',
         },
         {
           title: 'Age',
           key: 'age',
+          align: 'center',
         },
         {
           title: 'Address',
           key: 'address',
+          align: 'center',
         },
         {
           title: 'Action',
           slot: 'action',
-
           align: 'center',
         },
         {
@@ -166,6 +175,48 @@ export default {
                 date: '2016-10-02',
               },
               {
+                name: 'Jon Snow',
+                age: 26,
+                address: 'Ottawa No. 2 Lake Park',
+                date: '2016-10-04',
+              },
+               {
+                name: 'Jon Snow',
+                age: 26,
+                address: 'Ottawa No. 2 Lake Park',
+                date: '2016-10-04',
+              },
+               {
+                name: 'Jon Snow',
+                age: 26,
+                address: 'Ottawa No. 2 Lake Park',
+                date: '2016-10-04',
+              },
+               {
+                name: 'Jon Snow',
+                age: 26,
+                address: 'Ottawa No. 2 Lake Park',
+                date: '2016-10-04',
+              },
+               {
+                name: 'Jon Snow',
+                age: 26,
+                address: 'Ottawa No. 2 Lake Park',
+                date: '2016-10-04',
+              },
+               {
+                name: 'Jon Snow',
+                age: 26,
+                address: 'Ottawa No. 2 Lake Park',
+                date: '2016-10-04',
+              },
+               {
+                name: 'Jon Snow',
+                age: 26,
+                address: 'Ottawa No. 2 Lake Park',
+                date: '2016-10-04',
+              },
+               {
                 name: 'Jon Snow',
                 age: 26,
                 address: 'Ottawa No. 2 Lake Park',
