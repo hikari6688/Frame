@@ -1,6 +1,11 @@
 <template>
   <div class="class">
-    <iSearch :option="searchOpt"></iSearch>
+    <iSearch :option="searchOpt">
+      <template v-slot:custom>
+        <Button type="primary">新增</Button>
+        <Button type="primary">导出Excel</Button>
+      </template>
+    </iSearch>
     <iTable ref="table" :sorce="data" :columns="columns">
       <template v-slot:action="scope">
         <Button type="primary" size="small" style="margin-right: 5px" @click="show(scope)">View</Button>
@@ -98,7 +103,7 @@ export default {
         {
           title: 'Action',
           slot: 'action',
-        
+
           align: 'center',
         },
         {
@@ -125,8 +130,8 @@ export default {
     },
     search(config) {
       //点击搜索选项
-      const params={...config}
-      console.log(params)
+      const params = { ...config };
+      console.log(params);
     },
     reset() {
       //点击重置选项
@@ -180,7 +185,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.class{
-
+.class {
 }
 </style>
