@@ -13,7 +13,9 @@ router.beforeEach((to, from, next) => {
     const TOKEN = localStorage.getItem('TOKEN_KEY');
     const routes = store.state.user.routes;
     if (!TOKEN) {
-      location.replace(`${host}/login`);
+      router.replace({
+        name:'login'
+      })
     }
     if (!routes || !routes.length) {
       //重新挂获取路由并且加载菜单
@@ -28,6 +30,7 @@ router.beforeEach((to, from, next) => {
       store.commit('SET_KEY', to.name);
     }
   } else {
+    console.log('区主页')
     next();
   }
 });
