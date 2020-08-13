@@ -98,13 +98,12 @@ export default {
         {
           title: 'Action',
           slot: 'action',
-          width: 150,
+        
           align: 'center',
         },
         {
           title: 'Switch',
           slot: 'switch',
-          width: 150,
           align: 'center',
         },
       ],
@@ -180,4 +179,8 @@ export default {
 };
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.class{
+
+}
+</style>

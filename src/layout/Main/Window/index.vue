@@ -16,10 +16,13 @@ export default {
 
 <style scoped lang="scss">
 .window {
-  height: 100%;
-  width: 100%;
   background-color: white;
   overflow: auto;
   padding: 28px;
+  position: absolute;
+  left:30px;
+  right: 30px;
+  top: 30px;
+  bottom: 30px;
 }
 </style>

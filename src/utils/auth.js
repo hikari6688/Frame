@@ -2,7 +2,7 @@
 import Vue from 'vue';
 import router from '../router/index';
 import store from '@/store/index';
-import ViewUI from 'iview';
+import ViewUI from 'view-design';
 import { mapState, mapMutations, mapActions } from 'vuex';
 Vue.use(ViewUI);
 const host = location.host;

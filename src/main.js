@@ -1,12 +1,12 @@
 import Vue from 'vue';
 import App from './App.vue';
 import { http } from '@/utils/http';
-import iView from 'iview';
+import ViewUI from 'view-design';
 import store from '@/store'
 import router from '@/router'
-import 'iview/dist/styles/iview.css';    // 使用 CSS
+import 'view-design/dist/styles/iview.css';
 import '@/utils/auth'
-Vue.use(iView)
+Vue.use(ViewUI)
 Vue.config.productionTip = false;
 Vue.prototype.$http = http;
 new Vue({

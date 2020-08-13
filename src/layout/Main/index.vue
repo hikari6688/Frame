@@ -40,6 +40,7 @@ export default {
   .layout-window {
     flex: 1;
     padding: 30px;
+    position: relative;
   }
 }
 </style>

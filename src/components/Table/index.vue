@@ -73,9 +73,15 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.ivu-page {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 20px;
+.table {
+  table {
+    width: 100% !important;
+  }
+
+  .ivu-page {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+  }
 }
 </style>

@@ -9,7 +9,7 @@
           <img src="@/assets/images/kotori.jpg" alt="" />
           <!-- <img :src="avatar" alt="" /> -->
         </div>
-        <span class="name">ichiko</span>
+        <span class="name">izumi</span>
         <DropdownMenu slot="list">
           <DropdownItem name="message">消息中心</DropdownItem>
           <DropdownItem name="reset">重置密码</DropdownItem>
