@@ -10,23 +10,34 @@
           </MenuItem>
         </router-link>
       </template>
-    <!-- 有children的渲染下啦菜单 -->
+      <!-- 有children的渲染下啦菜单 -->
       <template v-else>
-        <Submenu :name="item.name" :key="item.name">
-          <template slot="title">
-            <Icon type="ios-navigate"></Icon>
-            <span>
-              {{ item.title }}
-            </span>
-          </template>
-          <NavMenu :moduleList="[...item.children]" />
-        </Submenu>
+        <template v-if="showMenu(item.children) && showMenu(item.children).length">
+          <Submenu :name="item.name" :key="item.name">
+            <template slot="title">
+              <Icon type="ios-navigate"></Icon>
+              <span>
+                {{ item.title }}
+              </span>
+            </template>
+            <NavMenu :moduleList="[...showMenu(item.children)]" />
+          </Submenu>
+        </template>
+        <template v-else>
+          <router-link :to="{ name: item.name }" :key="item.name">
+            <MenuItem :name="item.name">
+              <Icon type="ios-navigate"></Icon>
+              <span style="font-size:16px;">{{ item.title }}</span>
+            </MenuItem>
+          </router-link>
+        </template>
       </template>
     </template>
   </div>
 </template>
 <script>
 import { mapState } from 'vuex';
+import { menuFilter } from '@/utils/methods.js';
 export default {
   name: 'NavMenu',
   props: ['moduleList'],
@@ -38,9 +49,12 @@ export default {
       menuList: (state) => state.user.routes[0].children,
     }),
   },
-  mounted() {
+  mounted() {},
+  methods: {
+    showMenu(data) {
+      return menuFilter(data);
+    },
   },
-  methods: {},
 };
 </script>
 <style scoped></style>

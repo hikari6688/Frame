@@ -45,7 +45,7 @@ export default {
     };
   },
   mounted() {
-    console.log(this.option);
+    // console.log(this.option);
   },
   methods: {
     handleSubmit(reset) {

@@ -13,7 +13,7 @@ export default {
     return {};
   },
   mounted() {
-    console.log(this.isCollapsed);
+    // console.log(this.isCollapsed);
   },
   computed: {
     ...mapState({

@@ -12,14 +12,16 @@ router.beforeEach((to, from, next) => {
   if (to && to.name != 'login') {
     const TOKEN = localStorage.getItem('TOKEN_KEY');
     const routes = store.state.user.routes;
+    console.log(routes);
     if (!TOKEN) {
       router.replace({
-        name:'login'
-      })
+        name: 'login',
+      });
     }
     if (!routes || !routes.length) {
       //重新挂获取路由并且加载菜单
       store.dispatch('GET_ROUTES').then((r) => {
+        console.log(to);
         next({ ...to });
       });
     } else {
@@ -30,7 +32,7 @@ router.beforeEach((to, from, next) => {
       store.commit('SET_KEY', to.name);
     }
   } else {
-    console.log('区主页')
+    console.log('区主页');
     next();
   }
 });
