@@ -4,18 +4,23 @@
       <Icon type="md-menu" class="normal" />
     </div>
     <div class="user">
-      <Dropdown @on-click="clickDrop">
-        <div class="avatar">
-          <img src="@/assets/images/kotori.jpg" alt="" />
-          <!-- <img :src="avatar" alt="" /> -->
-        </div>
-        <span class="name">izumi</span>
-        <DropdownMenu slot="list">
-          <DropdownItem name="message">消息中心</DropdownItem>
-          <DropdownItem name="reset">重置密码</DropdownItem>
-          <DropdownItem name="logout">退出登陆</DropdownItem>
-        </DropdownMenu>
-      </Dropdown>
+      <div class="color">
+        <ColorPicker v-model="color" @on-change="colorChange" />
+      </div>
+      <div class="avatar-wrap">
+        <Dropdown @on-click="clickDrop">
+          <div class="avatar">
+            <img src="@/assets/images/kotori.jpg" alt="" />
+            <span class="name">izumi</span>
+            <!-- <img :src="avatar" alt="" /> -->
+          </div>
+          <DropdownMenu slot="list">
+            <DropdownItem name="message">消息中心</DropdownItem>
+            <DropdownItem name="reset">重置密码</DropdownItem>
+            <DropdownItem name="logout">退出登陆</DropdownItem>
+          </DropdownMenu>
+        </Dropdown>
+      </div>
     </div>
   </div>
 </template>
@@ -26,6 +31,7 @@ export default {
   data() {
     return {
       avatar: '@/assets/images/kotori.jpg',
+      color: '#19be6b',
     };
   },
   mounted() {},
@@ -35,8 +41,11 @@ export default {
     }),
   },
   methods: {
-    ...mapMutations(['SET_TOGGLE', 'SET_KEY', 'SET_OPEN']),
+    ...mapMutations(['SET_TOGGLE', 'SET_KEY', 'SET_OPEN', 'SET_CUSTOM']),
     ...mapActions(['LOG_OUT']),
+    colorChange() {
+      this.SET_CUSTOM(this.color);
+    },
     hideMenu() {
       this.SET_TOGGLE(!this.isCollapsed);
       if (this.isCollapsed) {
@@ -90,16 +99,24 @@ export default {
     }
   }
   .user {
-    margin-right: 32px;
+    // margin-right: 32px;
     cursor: pointer;
-
-    .avatar {
-      img {
-        display: block;
-        height: 42px;
-        width: 42px;
-        object-fit: cover;
-        border-radius: 50%;
+    display: flex;
+    align-items: center;
+    .avatar-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 80px;
+      .avatar {
+        img {
+          display: block;
+          height: 42px;
+          width: 42px;
+          object-fit: cover;
+          border-radius: 50%;
+        }
+        margin-right: 20px;
       }
     }
   }

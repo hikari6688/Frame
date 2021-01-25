@@ -5,13 +5,13 @@
         <Button type="primary">新增</Button>
         <Button type="primary">导出Excel</Button>
       </template>
-        <template v-slot:extra>
-          <FormItem label='这是插槽哦:'>
-        <Input  type="text" v-model="slot" placeholder="这是插槽" />
-         </FormItem> 
+      <template v-slot:extra>
+        <FormItem label="这是插槽哦:">
+          <Input type="text" v-model="slot" placeholder="这是插槽" />
+        </FormItem>
       </template>
     </iSearch>
-    <iTable ref="table" :sorce="data" :columns="columns">
+    <iTable ref="table" :sorce="loadData" :columns="columns">
       <template v-slot:action="scope">
         <Button type="primary" size="small" style="margin-right: 5px" @click="show(scope)">View</Button>
         <Button type="error" size="small" @click="remove(scope)">Delete</Button>
@@ -19,6 +19,9 @@
       <template v-slot:switch="scope">
         <Button type="primary" size="small" style="margin-right: 5px" @click="show(scope)">View</Button>
         <Button type="error" size="small" @click="remove(scope)">Delete</Button>
+      </template>
+      <template slot-scope="{ row }" slot="name">
+        <strong>{{ row.name }}</strong>
       </template>
     </iTable>
   </div>
@@ -35,7 +38,13 @@ export default {
   data() {
     return {
       data: [], //table数据源
-      slot:'',
+      loadData: (params) => {
+        //params:分页参数
+        return this.getList().then((r) => {
+          return r;
+        });
+      },
+      slot: '',
       searchOpt: {
         reset: true,
         items: [
@@ -52,7 +61,7 @@ export default {
             label: '国籍',
             tip: '请选择',
             key: 'nation',
-             style: { width: '120px' },
+            style: { width: '120px' },
             option: [
               {
                 value: 'New York',
@@ -123,9 +132,7 @@ export default {
       ],
     };
   },
-  mounted() {
-    this.getList();
-  },
+  mounted() {},
   methods: {
     show(value) {
       console.log(value);
@@ -145,91 +152,90 @@ export default {
     reset() {
       //点击重置选项
       this.$refs['table'].initPage();
-      this.getList();
     },
     getList() {
       //获取表格要渲染的list
-      this.$refs['table'].load();
-      setTimeout(() => {
-        const res = {
-          code: 200,
-          message: 'success',
-          result: {
-            data: [
-              {
-                name: 'John Brown',
-                age: 18,
-                address: 'New York No. 1 Lake Park',
-                date: '2016-10-03',
-              },
-              {
-                name: 'Jim Green',
-                age: 24,
-                address: 'London No. 1 Lake Park',
-                date: '2016-10-01',
-              },
-              {
-                name: 'Joe Black',
-                age: 30,
-                address: 'Sydney No. 1 Lake Park',
-                date: '2016-10-02',
-              },
-              {
-                name: 'Jon Snow',
-                age: 26,
-                address: 'Ottawa No. 2 Lake Park',
-                date: '2016-10-04',
-              },
-               {
-                name: 'Jon Snow',
-                age: 26,
-                address: 'Ottawa No. 2 Lake Park',
-                date: '2016-10-04',
-              },
-               {
-                name: 'Jon Snow',
-                age: 26,
-                address: 'Ottawa No. 2 Lake Park',
-                date: '2016-10-04',
-              },
-               {
-                name: 'Jon Snow',
-                age: 26,
-                address: 'Ottawa No. 2 Lake Park',
-                date: '2016-10-04',
-              },
-               {
-                name: 'Jon Snow',
-                age: 26,
-                address: 'Ottawa No. 2 Lake Park',
-                date: '2016-10-04',
-              },
-               {
-                name: 'Jon Snow',
-                age: 26,
-                address: 'Ottawa No. 2 Lake Park',
-                date: '2016-10-04',
-              },
-               {
-                name: 'Jon Snow',
-                age: 26,
-                address: 'Ottawa No. 2 Lake Park',
-                date: '2016-10-04',
-              },
-               {
-                name: 'Jon Snow',
-                age: 26,
-                address: 'Ottawa No. 2 Lake Park',
-                date: '2016-10-04',
-              },
-            ],
-            total: 32,
-            pageNo: 1,
-          },
-        };
-        this.data = res.result.data;
-        this.$refs['table'].load();
-      }, 1000);
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          const res = {
+            code: 200,
+            message: 'success',
+            result: {
+              data: [
+                {
+                  name: 'John Brown',
+                  age: 18,
+                  address: 'New York No. 1 Lake Park',
+                  date: '2016-10-03',
+                },
+                {
+                  name: 'Jim Green',
+                  age: 24,
+                  address: 'London No. 1 Lake Park',
+                  date: '2016-10-01',
+                },
+                {
+                  name: 'Joe Black',
+                  age: 30,
+                  address: 'Sydney No. 1 Lake Park',
+                  date: '2016-10-02',
+                },
+                {
+                  name: 'Jon Snow',
+                  age: 26,
+                  address: 'Ottawa No. 2 Lake Park',
+                  date: '2016-10-04',
+                },
+                {
+                  name: 'Jon Snow',
+                  age: 26,
+                  address: 'Ottawa No. 2 Lake Park',
+                  date: '2016-10-04',
+                },
+                {
+                  name: 'Jon Snow',
+                  age: 26,
+                  address: 'Ottawa No. 2 Lake Park',
+                  date: '2016-10-04',
+                },
+                {
+                  name: 'Jon Snow',
+                  age: 26,
+                  address: 'Ottawa No. 2 Lake Park',
+                  date: '2016-10-04',
+                },
+                {
+                  name: 'Jon Snow',
+                  age: 26,
+                  address: 'Ottawa No. 2 Lake Park',
+                  date: '2016-10-04',
+                },
+                {
+                  name: 'Jon Snow',
+                  age: 26,
+                  address: 'Ottawa No. 2 Lake Park',
+                  date: '2016-10-04',
+                },
+                {
+                  name: 'Jon Snow',
+                  age: 26,
+                  address: 'Ottawa No. 2 Lake Park',
+                  date: '2016-10-04',
+                },
+                {
+                  name: 'Jon Snow',
+                  age: 26,
+                  address: 'Ottawa No. 2 Lake Park',
+                  date: '2016-10-04',
+                },
+              ],
+              total: 32,
+              pageNo: 1,
+            },
+          };
+          resolve(res);
+        }, 1000);
+      });
     },
   },
 };

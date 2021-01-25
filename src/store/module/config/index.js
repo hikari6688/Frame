@@ -4,6 +4,7 @@ const state = () => ({
   isCollapsed: false,
   activeKey: '',
   opened: [],
+  custom: '#2d8cf0', //自定义主题颜色
 });
 
 // getters
@@ -25,6 +26,9 @@ const mutations = {
   },
   SET_OPEN(state, value) {
     state.opened = [value];
+  },
+  SET_CUSTOM(state, value) {
+    state.custom = value;
   },
 };
 

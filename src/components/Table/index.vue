@@ -1,13 +1,13 @@
 <template>
   <div class="table">
-    <Table height="520"  :border="false" :loading="loading" :columns="columns" :data="sorce">
+    <Table height="520" :border="false" :loading="loading" :columns="columns" :data="tableData">
       <template v-for="(i, idx) in slots" slot-scope="{ row, index }" :slot="i.slot">
         <div :key="idx">
           <slot :name="i.slot" :data="row"></slot>
         </div>
       </template>
     </Table>
-    <Page :current.sync="pageConfig.current" :page-size="pageConfig.pageSize" :total="pageConfig.total" show-elevator @on-change="pageChange" />
+    <Page :current.sync="pagination.current" :page-size="pagination.pageSize" :total="pagination.total" show-elevator @on-change="pageChange" />
   </div>
 </template>
 
@@ -16,29 +16,25 @@ export default {
   props: {
     sorce: {
       required: true,
-      type: Array,
-      default: [],
+      type: Promise,
     },
     columns: {
       required: true,
       type: Array,
       default: [],
     },
-    pageConfig: {
-      required: false,
-      type: Object,
-      default: {
-        current: 1,
-        total: 100,
-        pageSize: 10,
-      },
-    },
   },
   data() {
     return {
       loading: false,
       slots: [],
+      tableData: [],
       current: 1,
+      pagination: {
+        current: 1,
+        total: 0,
+        pageSize: 10,
+      },
     };
   },
   computed: {},
@@ -51,22 +47,25 @@ export default {
   },
   mounted() {
     this.columns = [...this.columns];
+    this.load();
+    console.log(this.$slots)
   },
   methods: {
-    load(status) {
+    async load() {
       //切换加载状态
-      if (status) {
-        this.loading = false; //强制结束加载状态
-        return;
-      }
-      this.loading = !this.loading;
+      this.loading = true;
+      const data = await this.sorce(this.pagination);
+      this.loading = false;
+      this.tableData = data.result.data;
+      this.pagination.total = data.result.total;
     },
     pageChange(val) {
-      // this.pageConfig.current = val;
-      this.$parent.setPage(val);
+      this.pagination.current = val;
+      this.load();
     },
-    initPage() {
-      this.pageConfig.current = 1;
+    refresh() {
+      this.pagination.current = 1;
+      this.load();
     },
   },
 };
