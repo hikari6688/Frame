@@ -16,7 +16,7 @@ export default {
   props: {
     sorce: {
       required: true,
-      type: Promise,
+      type: () => Promise,
     },
     columns: {
       required: true,
@@ -48,11 +48,11 @@ export default {
   mounted() {
     this.columns = [...this.columns];
     this.load();
-    console.log(this.$slots)
   },
   methods: {
     async load() {
       //切换加载状态
+
       this.loading = true;
       const data = await this.sorce(this.pagination);
       this.loading = false;

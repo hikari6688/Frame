@@ -5,7 +5,7 @@ module.exports = {
   lintOnSave: false,
   runtimeCompiler: false,
   configureWebpack: {
-    devtool: 'source-map',
+    devtool: '#eval-source-map',
   },
   devServer: {
     open: process.platform === 'darwin',

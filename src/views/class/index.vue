@@ -40,7 +40,7 @@ export default {
       data: [], //table数据源
       loadData: (params) => {
         //params:分页参数
-        return this.getList().then((r) => {
+        return this.getList(params).then((r) => {
           return r;
         });
       },
@@ -132,7 +132,8 @@ export default {
       ],
     };
   },
-  mounted() {},
+  mounted() {
+  },
   methods: {
     show(value) {
       console.log(value);
